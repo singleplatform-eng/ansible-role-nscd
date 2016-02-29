@@ -1,2 +1,65 @@
 ---
-# defaults file for nscd
+nscd_logfile: /var/log/nscd.log
+nscd_threads: 4
+nscd_max_threads: 32
+nscd_server_user: "nscd"
+nscd_stat_user: "somebody"
+nscd_debug_level: 0
+nscd_reload_count: 5
+nscd_paranoia: "no"
+nscd_restart_interval: 3600
+
+nscd_services:
+  passwd:
+    enable-cache: "yes"
+    positive-time-to-live: 6
+    negative-time-to-live: 2
+    suggested-size: 211
+    check-files: "yes"
+    persistent: "yes"
+    shared: "yes"
+    max-db-size: 33554432
+    auto-propagate: "yes"
+
+  group:
+    enable-cache: "yes"
+    positive-time-to-live: 3600
+    negative-time-to-live: 60
+    suggested-size: 211
+    check-files: "yes"
+    persistent: "yes"
+    shared: "yes"
+    max-db-size: 33554432
+    auto-propagate: "yes"
+
+  hosts:
+    enable-cache: "yes"
+    positive-time-to-live: 3600
+    negative-time-to-live: 20
+    suggested-size: 211
+    check-files: "yes"
+    persistent: "yes"
+    shared: "yes"
+    max-db-size: 33554432
+
+  services:
+    enable-cache: "yes"
+    positive-time-to-live: 28800
+    negative-time-to-live: 20
+    suggested-size: 211
+    check-files: "yes"
+    persistent: "yes"
+    shared: "yes"
+    max-db-size: 33554432
+
+  # netgroup caching is known-broken in Ubuntu, so disable it in the default config,
+  # see: https://bugs.launchpad.net/ubuntu/+source/eglibc/+bug/1068889
+  netgroup:
+    enable-cache: "{% if ansible_os_family == 'Debian' %}no{% else %}yes{% endif %}"
+    positive-time-to-live: 28800
+    negative-time-to-live: 20
+    suggested-size: 211
+    check-files: "yes"
+    persistent: "yes"
+    shared: "yes"
+    max-db-size: 33554432

@@ -1,0 +1,23 @@
+# {{ ansible_managed }}
+
+# Default settings
+
+logfile             {{ nscd_logfile }}
+threads             {{ nscd_threads }}
+max-threads         {{ nscd_max_threads }}
+server-user         {{ nscd_server_user }}
+stat-user           {{ nscd_stat_user }}
+debug-level         {{ nscd_debug_level }}
+reload-count        {{ nscd_reload_count }}
+paranoia            {{ nscd_paranoia }}
+restart-interval    {{ nscd_restart_interval }}
+
+# Service specific settings
+{% for group, settings in nscd_services.items() %}
+{% for item in settings | dictsort %}
+{% if loop.first %}
+
+{% endif %}
+{{ item[0] }} {{ group }} {{ item[1] }}
+{% endfor %}
+{% endfor %}

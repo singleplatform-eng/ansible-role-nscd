@@ -1,2 +1,35 @@
 ---
-# tasks file for nscd
+- name: Include distribution specific variables
+  include_vars: "{{ ansible_os_family }}.yml"
+  tags:
+    - nscd
+
+- include: "setup-{{ ansible_os_family }}.yml"
+  tags:
+    - nscd
+
+- name: Install nscd
+  package:
+    name: nscd
+    state: latest
+  tags:
+    - nscd
+
+- name: Copy nscd.conf
+  template:
+    src: nscd.conf.j2
+    dest: /etc/nscd.conf
+    owner: root
+    group: root
+    mode: 0644
+  tags:
+    - nscd
+    - nscd-conf
+
+- name: Start and enable nscd
+  service:
+    name: nscd
+    state: started
+    enabled: yes
+  tags:
+    - nscd
