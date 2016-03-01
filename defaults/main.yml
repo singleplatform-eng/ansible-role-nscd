@@ -2,11 +2,10 @@
 nscd_logfile: /var/log/nscd.log
 nscd_threads: 4
 nscd_max_threads: 32
-nscd_server_user: "nscd"
 nscd_stat_user: "somebody"
-nscd_debug_level: 0
 nscd_reload_count: 5
-nscd_paranoia: "no"
+nscd_debug_level: 0
+nscd_paranoia: "yes"
 nscd_restart_interval: 3600
 
 nscd_services:

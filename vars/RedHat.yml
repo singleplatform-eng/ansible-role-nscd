@@ -1,1 +1,2 @@
 ---
+nscd_server_user: "nscd"
