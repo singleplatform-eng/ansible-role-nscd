@@ -5,10 +5,21 @@
     - nscd
     - nscd-conf
 
-- name: Ensure nscd is installed
-  package:
+- name: RHEL | Ensure nscd is installed
+  yum:
     name: nscd
     state: latest
+  when: ansible_os_family == 'RedHat'
+  tags:
+    - nscd
+
+- name: DEBIAN | Ensure nscd is installed
+  apt:
+    name: nscd
+    state: latest
+    update_cache: yes
+    cache_valid_time: 86400
+  when: ansible_os_family == 'Debian'
   tags:
     - nscd
 
