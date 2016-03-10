@@ -14,10 +14,12 @@ restart-interval    {{ nscd_restart_interval }}
 
 # Service specific settings
 {% for group, settings in nscd_services.items() %}
+{% if settings['enable-cache'] == "yes" %}
 {% for item in settings | dictsort %}
 {% if loop.first %}
 
 {% endif %}
 {{ item[0] }} {{ group }} {{ item[1] }}
 {% endfor %}
+{% endif %}
 {% endfor %}
