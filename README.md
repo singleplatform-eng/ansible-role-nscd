@@ -38,7 +38,7 @@ Example Playbook
 
     - hosts: servers
       roles:
-         - { role: samdoran.nscd, nscd_debug_level: 255 }
+         - { role: samdoran.nscd, nscd_debug_level: 1, nscd_paranoad: "yes" }
 
 License
 -------
