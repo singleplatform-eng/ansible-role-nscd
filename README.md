@@ -22,7 +22,7 @@ Role Variables
 | `nscd_max_threads` | `32` | Max number of threads. |
 | `nscd_server_user` | `nscd` | User account that runs `nscd`. |
 | `nscd_stat_user` |   `somebody` | User who is allowed to request statistics. |
-| `nscd_debug_level` | `0` | Debug level. |
+| `nscd_debug_level` | `0` | Debug level (rang. 0-10). |
 | `nscd_reload_count` |    `5` | Number of times a cached entry is reloaded before it is removed. |
 | `nscd_paranoia` | `no` | Whether or not to restart `nscd` periodically. |
 | `nscd_restart_interval` | `3600` | Interval in seconds to restart `nscd` if `nscd_paranoia` is set to `yes`. |
