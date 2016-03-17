@@ -38,7 +38,6 @@
 - name: Start and enable nscd
   service:
     name: nscd
-    state: started
     enabled: yes
   tags:
     - nscd
