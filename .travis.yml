@@ -1,39 +1,19 @@
----
-language: python
-python: "2.7"
+services: docker
 
-sudo: required
-dist: trusty
-
-# Install ansible
-addons:
-  apt:
-    packages:
-      - python-pip
-
-install:
-  # Install ansible
-  - pip install ansible
-
-  # Check ansible version
-  - ansible --version
-
-  # Create ansible.cfg with correct roles_path
-  - printf '[defaults]\nroles_path=../' >ansible.cfg
+env:
+  - distro: centos6
+  - distro: centos7
+  - distro: ubuntu14
+  - distro: ubuntu16
 
 script:
-  # Basic role syntax check
-  - ansible-playbook tests/test.yml -i tests/inventory --syntax-check
 
-  # Run the first time
-  - ansible-playbook tests/test.yml -i tests/inventory -c local -b
+  # Download test script
+  - wget -O ${PWD}/tests/test-ansible-role.sh https://gist.githubusercontent.com/samdoran/c3d392ee697881fa33a1d1a65814a07b/raw
+  - chmod +x ${PWD}/tests/test-ansible-role.sh
 
-  # Run again and expect no changes
-  - >
-    ansible-playbook tests/test.yml -i tests/inventory -c local -b
-    | grep -q 'changed=0.*failed=0'
-    && (echo 'Idempotence test: pass' && exit 0)
-    || (echo 'Idempotence test: fail' && exit 1)
+  # Run tests
+  - ${PWD}/tests/test-ansible-role.sh -d $distro
 
 notifications:
   webhooks: https://galaxy.ansible.com/api/v1/notifications/
