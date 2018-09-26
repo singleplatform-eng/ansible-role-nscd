@@ -1,8 +1,6 @@
 NSCD
 =========
-[![Build Status](https://travis-ci.org/samdoran/ansible-role-nscd.svg?branch=master)](https://travis-ci.org/samdoran/ansible-role-nscd)
-[![Galaxy](https://img.shields.io/badge/galaxy-samdoran.nscd-blue.svg?style=flat)](https://galaxy.ansible.com/samdoran/nscd/)
-
+[![Build Status](https://travis-ci.org/singleplatform-eng/ansible-role-nscd.svg?branch=master)](https://travis-ci.org/singleplatform-eng/ansible-role-nscd)
 
 Install the Name Service Cache Daemon.
 
